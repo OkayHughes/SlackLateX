@@ -1,5 +1,5 @@
-# SlackLateX
-Bot to convert LateX code in messages into 
+# SlackLaTeX
+Bot to convert LaTeX code in messages into 
 
 ![screen]
 
@@ -11,13 +11,13 @@ npm install request
 npm install websocket
 ```
 
-Create a secret.txt file in the bot directory and put your slack token in it
+Create a secret.txt file in the bot directory and put your slack token in it.
 
-Start bot by running `node bot.js` or `nodejs bot.js`
+Create a config.txt file that has the username on the first line, and a direct link to the icon you want the bot to have on the second.
 
-In Slack, type `..startLatex` to enable bot and `..stopLatex` to disable bot. This only applies the user and channel that typed this. 
+Start bot by running `node bot.js` or `nodejs bot.js`.
 
-Any message that starts with '$' and ends with '$' will be turned into an image when bot is enabled
+Any message that starts with '$' and ends with '$' will be turned into an image when bot is on.
 
 
 [screen]:http://i.imgur.com/7xbkJ6P.png
