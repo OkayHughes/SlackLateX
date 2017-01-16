@@ -94,10 +94,15 @@ function handleMessage(mObj){
         console.log("\t"+mObj.text+"\n");
         console.log("\t"+escape(mObj.text)+"\n");
 
+
+        if (mObj.text == undefined  || (Date.now()/1000 - parseFloat(mObj.ts))/10 > 2){
+            return;
+        }
+
         if(mObj.text==='..ping'){
             pong(mObj.channel,"pong");
         }
-        if(latex[mObj.user+mObj.channel]==true && mObj.text[0]==='$' && mObj.text[mObj.text.length-1]==='$' && mObj.text.length>1) {
+        if( mObj.text[0]==='$' && mObj.text[mObj.text.length-1]==='$' && mObj.text.length>1) {
             deleteMessage(mObj.ts,mObj.channel);
 			postLatex(mObj.channel,replaceAll(mObj.text.substring(1,mObj.text.length-1),'&amp;','&'));
 
