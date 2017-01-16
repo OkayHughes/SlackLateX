@@ -13,6 +13,13 @@ fs.readFile('secret.txt','utf8',function (err, data) {
     getWebSocket();
 });
 
+fs.readFile("config.txt", "utf8", function(err, data){
+    var str = data.split("\n");
+    global.username = str[0];
+    global.icon_url = str[1];
+});
+
+
 //gets the websocket url 
 function getWebSocket(){
     request('https://slack.com/api/rtm.start?token='+global.token+'&pretty=1', function (error, response, body) {
@@ -71,7 +78,7 @@ function deleteMessage(timestamp,channel) {
 function postLatex(channel,text) {
     var urlBase= 'http://latex.codecogs.com/png.latex?%5Cdpi%7B300%7D%20'+encodeURIComponent(text);
 
-    var dURL = "https://slack.com/api/chat.postMessage?token="+global.token+"&channel="+channel+"&text=%20&attachments=%5B%7B%22fallback%22%3A%22.%22%2C%22color%22%3A%20%22%2336a64f%22%2C%22image_url%22%3A%22" + encodeURIComponent(urlBase)+"%22%7D%5D&pretty=1&as_user:true";
+    var dURL = "https://slack.com/api/chat.postMessage?token="+global.token+"&channel="+channel+"&text=%20&attachments=%5B%7B%22fallback%22%3A%22.%22%2C%22color%22%3A%20%22%2336a64f%22%2C%22image_url%22%3A%22" + encodeURIComponent(urlBase)+"%22%7D%5D&pretty=1&username=" + username + "&icon_url=" + icon_url;
     
     request(dURL, function (error, response, body) {
          //console.log(response.url);
